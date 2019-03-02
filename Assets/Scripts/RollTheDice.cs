@@ -4,24 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class RollTheDice : MonoBehaviour
-{ 
-public InputField rollDiceA;
-public InputField rollDiceB;
-public Text resultOutA;
-public Text resultOutB;
-//public int playerLoc;
+{
+    public InputField[] resulsDisplay;
+    public int diceSides = 6;
+    public int numberOfDiceToRoll = 2;
+    public int[] dice;
+    //public int playerLoc;
 
 
-private int diceA;
-private int diceB;
-   
+    //private int totalDiceRoll =0;
+    
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        diceA = 0;
-        diceB = 0;
+        dice = new int[numberOfDiceToRoll];
         //player.Loc = (0, 0, 0);
 
     }
@@ -29,10 +28,19 @@ private int diceB;
 
     public void RollDice()
     {
-        diceA = Random.Range(0, 5);
-        rollDiceA.text = diceA.ToString();
-        diceB = Random.Range(0, 5);
-        rollDiceB.text = diceB.ToString();
+        for (int i = 0; i < numberOfDiceToRoll; i++)
+        {
+            int diceRoll = Random.Range(1, diceSides + 1);
+            dice[i] = diceRoll;
+           // totalDiceRoll = totalDiceRoll + diceRoll;
+
+            resulsDisplay[i].text = diceRoll.ToString();
+        }
+
+       // Debug.Log(totalDiceRoll);
+        //rollDiceA.text = diceA.ToString();
+        //diceB = Random.Range(1, diceSides+1);
+        //rollDiceB.text = diceB.ToString();
 
 
     }
@@ -43,7 +51,7 @@ private int diceB;
     //    if (playerLoc == 0)
     //    {
     //    playerLoc.translate.vector3 (diceA + diceB);
-        
+
     //    }
 
 
